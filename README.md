@@ -1,2 +1,2 @@
 # CodeAlpha_SimpleEcommerceStore
-I'm going to build Simple Ecommerce Store for my internship on CodeAlpha.
+I built Simple Ecommerce Store for my internship on CodeAlpha.
