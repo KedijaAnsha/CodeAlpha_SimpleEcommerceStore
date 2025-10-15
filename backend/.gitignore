@@ -1,1 +1,14 @@
-".env" 
+# Ignore node modules (backend and frontend)
+node_modules/
+
+# Ignore environment variables
+.env
+
+# Ignore logs and system files
+*.log
+.DS_Store
+Thumbs.db
+
+# Ignore build files (optional)
+dist/
+build/
