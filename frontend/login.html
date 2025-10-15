@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Kedija's Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="logo">Kedija's Store</a>
+    <nav>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+      <a href="login.html" id="nav-login">Login</a>
+      <a href="register.html" id="nav-register">Register</a>
+      <button id="nav-logout" style="display:none">Logout</button>
+      <span id="nav-user" class="nav-user"></span>
+    </nav>
+  </header>
+
+  <main class="container form-container">
+    <h1>Login</h1>
+    <form id="login-form">
+      <label>Email</label>
+      <input type="email" id="email" required />
+      <label>Password</label>
+      <input type="password" id="password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+  </main>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+:root{
+  --accent:#2b6cb0;
+  --muted:#6b7280;
+  --card-bg:#fff;
+  --page-bg:#f5f7fb;
+  --max-width:1100px;
+  font-family: Inter, system-ui, Arial, sans-serif;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--page-bg);color:#111}
+
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#fff;padding:12px 20px;box-shadow:0 1px 4px rgba(10,10,10,0.05);
+}
+.logo{font-weight:700;color:var(--accent);text-decoration:none}
+nav a, nav button{margin-left:12px;text-decoration:none;color:#333}
+nav button{background:none;border:1px solid #ddd;padding:6px 10px;border-radius:6px;cursor:pointer}
+
+.container{max-width:var(--max-width);margin:28px auto;padding:0 16px}
+
+h1{margin:0 0 16px;font-size:24px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.product-card{background:var(--card-bg);padding:12px;border-radius:8px;box-shadow:0 2px 6px rgba(12,12,12,0.04);display:flex;flex-direction:column;align-items:center;text-align:center}
+.product-card img{width:150px;height:150px;object-fit:cover;border-radius:6px}
+.product-card h3{margin:12px 0 6px;font-size:18px}
+.price{color:var(--accent);font-weight:600;margin-bottom:8px}
+.product-card button{margin-top:auto;padding:8px 12px;border-radius:6px;border:none;background:var(--accent);color:#fff;cursor:pointer}
+.btn-link{display:inline-block;padding:8px 12px;border-radius:6px;border:1px solid #ddd;text-decoration:none;color:#333;margin-left:8px}
+
+.product-detail-card{display:flex;gap:20px;align-items:flex-start;background:#fff;padding:16px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.product-detail-card img{width:300px;height:300px;object-fit:cover;border-radius:8px}
+.product-detail-info{flex:1}
+.product-detail-info h2{margin:0}
+.actions{margin-top:12px}
+
+.form-container{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.04);max-width:480px}
+.form-container label{display:block;margin-top:10px;color:var(--muted)}
+.form-container input{width:100%;padding:8px;margin-top:6px;border:1px solid #e6e6e6;border-radius:6px}
+
+.checkout-area{margin-top:20px;display:flex;justify-content:flex-end;gap:12px}
+
+.cart-table{width:100%;border-collapse:collapse;background:#fff;padding:10px;border-radius:8px;overflow:hidden}
+.cart-table th,.cart-table td{padding:10px;border-bottom:1px solid #f0f0f0;text-align:left}
+.cart-image{width:64px;height:64px;object-fit:cover;border-radius:6px}
+
+.small{font-size:13px;color:var(--muted)}

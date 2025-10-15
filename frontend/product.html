@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="logo">Kedija's Store</a>
+    <nav>
+      <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+      <a href="login.html" id="nav-login">Login</a>
+      <a href="register.html" id="nav-register">Register</a>
+      <button id="nav-logout" style="display:none">Logout</button>
+      <span id="nav-user" class="nav-user"></span>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div id="product-detail" class="product-detail"></div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Product page logic — uses the main.js helper (addToCartById)
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const el = document.getElementById('product-detail');
+
+      if (!id) {
+        el.innerHTML = '<p>Product id missing in URL.</p>';
+        return;
+      }
+
+      // Try to use cached products from main.js; otherwise fetch all and find.
+      let product = (window.productsCache || []).find(p => p._id === id);
+      if (!product) {
+        try {
+          const res = await fetch('http://localhost:5000/api/products');
+          const all = await res.json();
+          product = all.find(p => p._id === id);
+        } catch (err) { console.error(err); }
+      }
+
+      if (!product) {
+        el.innerHTML = '<p>Product not found.</p>';
+        return;
+      }
+
+      el.innerHTML = `
+        <div class="product-detail-card">
+          <img src="${product.image || 'https://via.placeholder.com/300'}" alt="${product.name}" />
+          <div class="product-detail-info">
+            <h2>${product.name}</h2>
+            <p class="price">$${product.price.toFixed(2)}</p>
+            <p>${product.description || 'No description provided.'}</p>
+            <p><strong>In stock:</strong> ${product.stock ?? 'N/A'}</p>
+            <div class="actions">
+              <button id="add-cart">Add to Cart</button>
+              <a href="cart.html" class="btn-link">Go to Cart</a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('add-cart').addEventListener('click', () => {
+        if (window.addToCartById) {
+          window.addToCartById(product._id);
+        } else {
+          // Fallback: basic add
+          const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+          const idx = cart.findIndex(i => i.productId === product._id);
+          if (idx > -1) cart[idx].quantity += 1;
+          else cart.push({ productId: product._id, name: product.name, price: product.price, image: product.image, quantity: 1 });
+          localStorage.setItem('cart', JSON.stringify(cart));
+          alert('Added to cart');
+          updateCartCount();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
